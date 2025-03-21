@@ -20,7 +20,7 @@ export default function AboutMe() {
 
       {/* About Section */}
       <p className="max-w-2xl text-lg text-gray-300 text-center leading-relaxed">
-        Hi! I'm{" "}
+        Hi! I&#39;m{" "}
         <span className="text-blue-400 font-semibold">Korbin Hillan</span>, a
         senior Software Engineering student at{" "}
         <span className="text-yellow-300 font-semibold">
@@ -37,7 +37,7 @@ export default function AboutMe() {
       </p>
 
       <p className="max-w-2xl text-lg text-gray-300 text-center leading-relaxed mt-4">
-        I'm proficient in{" "}
+        I&#39;m proficient in{" "}
         <span className="font-semibold">
           JavaScript, React, Next.js, Django, PostgreSQL, Java, API Development,
         </span>{" "}
