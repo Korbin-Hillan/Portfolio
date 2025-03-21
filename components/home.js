@@ -43,7 +43,7 @@ export default function Home() {
 
       {/* Call-to-Action Button */}
       <button className="mt-8 bg-blue-500 p-3 px-12 rounded-2xl text-white flex items-center gap-2 font-semibold hover:bg-blue-600 transition transform hover:scale-105 shadow-lg">
-        <span>Let's work together</span>
+        <span>Let&#39;s work together</span>
         <HiArrowRight />
       </button>
     </section>
