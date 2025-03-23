@@ -31,3 +31,4 @@ jobs:
           folder: out
           branch: gh-pages
           clean: true
+          token: ${{ secrets.DEPLOY_TOKEN }} # Use your PAT for authentication
