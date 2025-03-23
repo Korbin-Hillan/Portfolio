@@ -56,7 +56,7 @@ export default function AboutMe() {
 
       {/* Call-to-Action Button */}
       <a
-        href="https://korbin101lee.com"
+        href=""
         target="_blank"
         rel="noopener noreferrer"
         className="mt-8 bg-blue-500 px-6 py-3 rounded-2xl text-white font-semibold flex items-center gap-2 hover:bg-blue-600 transition transform hover:scale-105 shadow-lg"
