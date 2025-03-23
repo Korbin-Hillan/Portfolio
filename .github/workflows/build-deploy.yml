@@ -1,4 +1,4 @@
-name: Build and Deploy React App
+name: Build and Deploy Next.js App
 
 on:
   push:
@@ -22,12 +22,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build React app
+      - name: Build Next.js app
         run: npm run build
 
       - name: Deploy to branch
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: build
+          folder: out
           branch: gh-pages
           clean: true
