@@ -39,10 +39,9 @@ export default function AboutMe() {
       <p className="max-w-2xl text-lg text-gray-300 text-center leading-relaxed mt-4">
         I&#39;m proficient in{" "}
         <span className="font-semibold">
-          JavaScript, React, Next.js, Django, PostgreSQL, Java, API Development,
+          JavaScript, React, Next.js, PostgreSQL, Java, API Development.
         </span>{" "}
-        and <span className="font-semibold">Cloud Computing</span>. I enjoy
-        tackling complex problems and optimizing system efficiency.
+        I enjoy tackling complex problems and optimizing system efficiency.
       </p>
 
       <p className="max-w-2xl text-lg text-gray-300 text-center leading-relaxed mt-4">

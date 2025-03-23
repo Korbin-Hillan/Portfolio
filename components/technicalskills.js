@@ -34,7 +34,6 @@ export default function TechnicalSkills() {
           <ul className="space-y-2 text-gray-300">
             <li>Node.js</li>
             <li>Express.js</li>
-            <li>Django</li>
             <li>RESTful APIs</li>
             <li>Authentication (JWT/OAuth)</li>
           </ul>

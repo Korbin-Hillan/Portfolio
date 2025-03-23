@@ -12,18 +12,18 @@ export default function HeaderBar({ allLinksToHome = false }) {
     ? [
         { label: "Home", href: "/#home" },
         { label: "About", href: "/#about" },
-        { label: "Projects", href: "/projects" },
         { label: "Skills", href: "/#skills" },
         { label: "Contact", href: "/#contact" },
+        { label: "Projects", href: "/projects" },
         { label: "Resume", href: "/resume" },
         { label: "Blog", href: "/blog" },
       ]
     : [
         { label: "Home", href: "#home" },
         { label: "About", href: "#about" },
-        { label: "Projects", href: "/projects" },
         { label: "Skills", href: "#skills" },
         { label: "Contact", href: "#contact" },
+        { label: "Projects", href: "/projects" },
         { label: "Resume", href: "/resume" },
         { label: "Blog", href: "/blog" },
       ];
