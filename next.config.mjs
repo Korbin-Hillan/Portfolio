@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     unoptimized: true, // This disables the Image Optimization API
   },
+  trailingSlash: true,
 };
 
 export default nextConfig;
