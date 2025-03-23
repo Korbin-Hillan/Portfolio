@@ -1,4 +1,4 @@
-import HeaderBar from "../../components/header/header";
+import HeaderBar from "../../components/header";
 import HomePage from "../../components/home";
 import AboutMe from "../../components/about";
 import TechnicalSkills from "../../components/technicalskills";

@@ -1,12 +1,14 @@
 import { GrLinkedin } from "react-icons/gr";
 import { FaGithub } from "react-icons/fa";
 import { HiArrowRight } from "react-icons/hi";
+import { FiChevronDown } from "react-icons/fi";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <section
       id="home"
-      className="min-h-screen flex flex-col items-center text-center bg-gray-900 text-white justify-center px-6"
+      className="min-h-screen flex flex-col items-center text-center bg-gray-900 text-white justify-center px-6 relative"
     >
       {/* Name & Title */}
       <h1 className="text-5xl text-gray-300 font-extrabold tracking-wide">
@@ -22,12 +24,13 @@ export default function Home() {
       </p>
 
       {/* Social Links */}
-      <div className="flex text-4xl pt-10 space-x-6">
+      <div className="flex text-4xl pt-10 space-x-6 ">
         <a
           href="https://github.com/yourgithub"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-300 hover:text-gray-400 transition transform hover:scale-110"
+          className="text-gray-300 hover:text-white hover:bg-blue-500/20 p-2 rounded-full transition transform hover:scale-110"
+          aria-label="GitHub Profile"
         >
           <FaGithub />
         </a>
@@ -35,17 +38,29 @@ export default function Home() {
           href="https://linkedin.com/in/yourlinkedin"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-300 hover:text-gray-400 transition transform hover:scale-110"
+          className="text-gray-300 hover:text-white hover:bg-blue-500/20 p-2 rounded-full transition transform hover:scale-110"
+          aria-label="LinkedIn Profile"
         >
           <GrLinkedin />
         </a>
       </div>
 
       {/* Call-to-Action Button */}
-      <button className="mt-8 bg-blue-500 p-3 px-12 rounded-2xl text-white flex items-center gap-2 font-semibold hover:bg-blue-600 transition transform hover:scale-105 shadow-lg">
-        <span>Let&#39;s work together</span>
-        <HiArrowRight />
-      </button>
+      <Link href="#contact">
+        <button className="mt-8 bg-blue-500 p-3 px-12 rounded-full text-white flex items-center gap-2 font-semibold hover:bg-blue-600 transition transform hover:scale-105 shadow-lg">
+          <span>Let's work together</span>
+          <HiArrowRight />
+        </button>
+      </Link>
+      {/* Scroll down indicator */}
+      <div className="absolute bottom-10 left-0 right-0 flex justify-center animate-bounce">
+        <Link
+          href="#about"
+          className="text-gray-400 hover:text-white transition"
+        >
+          <FiChevronDown size={30} />
+        </Link>
+      </div>
     </section>
   );
 }
