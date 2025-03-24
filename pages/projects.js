@@ -80,7 +80,7 @@ export default function Projects() {
     },
     {
       title: "Portfolio Website",
-      imageSrc: "/images/portfolio.png",
+      imageSrc: "/images/Portfolio.png",
       description:
         "My personal portfolio website built with Next.js and Tailwind CSS.",
       techStack: ["React", "Next.js", "Tailwind CSS"],
