@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AboutMe() {
   return (
@@ -54,14 +55,13 @@ export default function AboutMe() {
       </p>
 
       {/* Call-to-Action Button */}
-      <a
-        href=""
-        target="_blank"
+      <Link
+        href="/projects"
         rel="noopener noreferrer"
         className="mt-8 bg-blue-500 px-6 py-3 rounded-2xl text-white font-semibold flex items-center gap-2 hover:bg-blue-600 transition transform hover:scale-105 shadow-lg"
       >
         Check Out My Work
-      </a>
+      </Link>
     </section>
   );
 }

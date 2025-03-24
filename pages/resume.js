@@ -1,12 +1,13 @@
 import HeaderBar from "../components/header";
 import { FiDownload } from "react-icons/fi";
+import Footer from "../components/footer";
 
 import "../src/app/globals.css";
 export default function Resume() {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <HeaderBar allLinksToHome={true} />
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center flex-grow">
         <h1 className="self-center text-blue-500 font-extrabold text-4xl mt-28">
           Resume
         </h1>
@@ -17,6 +18,7 @@ export default function Resume() {
           </button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

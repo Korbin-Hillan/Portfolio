@@ -2,7 +2,7 @@ import HeaderBar from "../components/header";
 import { FiDownload, FiExternalLink } from "react-icons/fi";
 import Image from "next/image";
 import Link from "next/link";
-
+import Footer from "../components/footer";
 import "../src/app/globals.css";
 
 const ProjectCard = ({
@@ -94,7 +94,7 @@ export default function Projects() {
     <div className="min-h-screen bg-gray-900 text-white">
       <HeaderBar allLinksToHome={true} />
 
-      <main className="container mx-auto px-4 py-12">
+      <main className="container mx-auto px-4 py-32">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-blue-500 mb-4">My Projects</h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
@@ -108,6 +108,7 @@ export default function Projects() {
           ))}
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

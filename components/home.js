@@ -26,7 +26,7 @@ export default function Home() {
       {/* Social Links */}
       <div className="flex text-4xl pt-10 space-x-6 ">
         <a
-          href="https://github.com/yourgithub"
+          href="https://github.com/Korbin-Hillan"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-300 hover:text-white hover:bg-blue-500/20 p-2 rounded-full transition transform hover:scale-110"
@@ -35,7 +35,7 @@ export default function Home() {
           <FaGithub />
         </a>
         <a
-          href="https://linkedin.com/in/yourlinkedin"
+          href="https://linkedin.com/in/korbinhillan"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-300 hover:text-white hover:bg-blue-500/20 p-2 rounded-full transition transform hover:scale-110"
