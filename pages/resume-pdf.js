@@ -65,7 +65,7 @@ export default function ResumePDFViewer() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         {/* Preload PDF to improve loading time */}
-        <link rel="preload" href="/Korbin's Resume.pdf" as="document" />
+        <link rel="preload" href="/Korbin_Resume.pdf" as="document" />
       </Head>
 
       {/* Header */}
@@ -100,7 +100,7 @@ export default function ResumePDFViewer() {
                 instead.
               </p>
               <a
-                href="/Korbin's Resume.pdf"
+                href="/Korbin_Resume.pdf"
                 download
                 className="inline-flex items-center bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white px-4 py-2 rounded"
               >
@@ -113,7 +113,7 @@ export default function ResumePDFViewer() {
         <div className={loading || error ? "hidden" : "h-[calc(100vh-4rem)]"}>
           <iframe
             ref={iframeRef}
-            src="/Korbin's Resume.pdf#toolbar=1"
+            src="/Korbin_Resume.pdf#toolbar=1"
             className="w-full h-full border-0"
             title="Korbin's Resume"
             onLoad={handleIframeLoad}
