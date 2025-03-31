@@ -4,6 +4,7 @@ import Footer from "../components/footer";
 import { FaMapLocationDot, FaGithub } from "react-icons/fa6";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { CiLinkedin } from "react-icons/ci";
+import Link from "next/link";
 
 import "../src/app/globals.css";
 
@@ -130,14 +131,14 @@ export default function Resume() {
           Resume
         </h1>
         <div className="bg-blue-400 hover:bg-blue-500 transition-colors self-center mt-4 rounded-lg p-3 px-8 cursor-pointer">
-          <a
-            href="/resume.pdf"
+          <Link
+            href="/resume-pdf"
             className="flex flex-row items-center gap-2 cursor-pointer"
-            aria-label="Download resume as PDF"
+            aria-label="View resume as PDF"
           >
             <FiDownload />
             <span>View PDF</span>
-          </a>
+          </Link>
         </div>
         <ResumeContainer>
           <h1 className="text-blue-600 text-3xl md:text-4xl pt-6 pl-5 font-bold">
