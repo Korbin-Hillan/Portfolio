@@ -111,11 +111,10 @@ export default function ResumePDFViewer() {
         )}
 
         <div className={loading || error ? "hidden" : "h-[calc(100vh-4rem)]"}>
-          <iframe
-            ref={iframeRef}
+          <embed
             src="/Korbin_Resume.pdf#toolbar=1"
-            className="w-full h-full border-0"
-            title="Korbin's Resume"
+            type="application/pdf"
+            className="w-full h-full"
             onLoad={handleIframeLoad}
             onError={handleIframeError}
           />
