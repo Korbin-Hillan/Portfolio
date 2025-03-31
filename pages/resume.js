@@ -236,14 +236,14 @@ export default function Resume() {
               title="Personal Portfolio Website"
               company="Personal Project"
               period="2025"
-              description="Designed and developed a fully responsive portfolio website to showcase personal projects and technical skills. Applied modern web development practices with optimized performance and mobile responsiveness."
+              description="Designed and developed a responsive personal portfolio website to showcase my projects and skills. Implemented modern UI components, responsive layouts, and optimized performance through code splitting and lazy loading. Deployed with CI/CD pipeline for automated testing and deployment."
               technologies={["React", "Next.js", "Tailwind CSS", "Vercel"]}
             />
             <ExperienceItem
               title="Movie Horizon  "
               company="Course Project"
               period="2025"
-              description="Developed a full-stack movie exploration and task management application with dynamic user interaction. Implemented user authentication, task creation, categorization, filtering, and sorting features for enhanced user experience."
+              description="Developed a feature-rich movie browsing platform that allows users to discover, search, and create watchlists of their favorite films. Implemented user authentication, real-time updates using websockets, and integrated with TMDB API for comprehensive movie data. Designed a responsive UI with dark mode support and accessibility features."
               technologies={[
                 "React",
                 "Node.js",
@@ -256,7 +256,7 @@ export default function Resume() {
               title="Memoranda Project (Team Project)"
               company="Personal Project"
               period="2025"
-              description="Worked in a Scrum-based Agile team to build a Java desktop application for managing tasks, schedules, and notes. Participated in sprint planning, code reviews, and issue tracking. Contributed to UI design, unit testing, and Gradle configuration."
+              description="Collaborated in an Agile Scrum environment with a team of 4 developers to enhance an open-source scheduling and note-taking application. Led the implementation of the calendar functionality and notification system. Conducted code reviews, wrote comprehensive unit tests achieving 85% code coverage, and participated in daily stand-ups and sprint planning."
               technologies={["Java", "Swing", "Junit", "Gradle", "Git/Github"]}
             />
           </div>
