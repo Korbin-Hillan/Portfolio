@@ -131,14 +131,15 @@ export default function Resume() {
           Resume
         </h1>
         <div className="bg-blue-400 hover:bg-blue-500 transition-colors self-center mt-4 rounded-lg p-3 px-8 cursor-pointer">
-          <Link
-            href="/resume-pdf"
-            className="flex flex-row items-center gap-2 cursor-pointer"
-            aria-label="View resume as PDF"
-          >
-            <FiDownload />
-            <span>View PDF</span>
-          </Link>
+        <Link
+          href="/Korbin_Resume.pdf"
+          className="flex flex-row items-center gap-2 cursor-pointer"
+          aria-label="Download resume as PDF"
+          download="Korbin_Resume.pdf"
+        >
+          <FiDownload />
+          <span>View Resume</span>
+        </Link>
         </div>
         <ResumeContainer>
           <h1 className="text-blue-600 text-3xl md:text-4xl pt-6 pl-5 font-bold">
