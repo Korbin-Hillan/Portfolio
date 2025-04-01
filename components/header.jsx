@@ -1,68 +1,93 @@
 "use client";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { HiMenu, HiX } from "react-icons/hi";
+// Remove these incorrect imports:
+// import HeaderBar from "../components/HeaderBar";
+// import Footer from "../components/Footer";
 
-import { useEffect, useState } from "react";
-import Head from "next/head";
-import HeaderBar from "../components/HeaderBar";
-import Footer from "../components/Footer";
+export default function Header({ allLinksToHome = false }) {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-export default function ResumePage() {
-  const [isMounted, setIsMounted] = useState(false);
-  
-  // Only render the PDF viewer on the client side
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const mainTarget = allLinksToHome ? "/" : "#home";
+  const navLinks = allLinksToHome
+    ? [
+        { label: "Home", href: "/#home" },
+        { label: "About", href: "/#about" },
+        { label: "Skills", href: "/#skills" },
+        { label: "Contact", href: "/#contact" },
+        { label: "Projects", href: "/projects" },
+        { label: "Resume", href: "/resume" },
+        { label: "Blog", href: "/blog" },
+      ]
+    : [
+        { label: "Home", href: "#home" },
+        { label: "About", href: "#about" },
+        { label: "Skills", href: "#skills" },
+        { label: "Contact", href: "#contact" },
+        { label: "Projects", href: "/projects" },
+        { label: "Resume", href: "/resume" },
+        { label: "Blog", href: "/blog" },
+      ];
 
   return (
-    <>
-      <Head>
-        <title>Korbin&apos;s Resume</title>
-        <meta name="description" content="View Korbin Hillan's Resume" />
-      </Head>
+    <header className="fixed top-0 left-0 right-0 bg-gray-800/90 p-4 flex items-center backdrop-blur-md z-50 shadow-md">
+      <div className="flex items-center">
+        {/* Profile Image linking to the target */}
+        <Link href={mainTarget}>
+          <Image
+            src="/images/Lake_Isabella.jpeg"
+            alt="Image of me on a Rock at Lake Isabella"
+            width={80}
+            height={80}
+            className="w-10 h-10 rounded-full object-cover border-1 border-blue-400 "
+          />
+        </Link>
+        {/* Name linking to the target */}
+        <Link
+          href={mainTarget}
+          className="ml-3 font-extrabold text-blue-500 text-lg hover:text-blue-400 transition"
+        >
+          Korbin Hillan
+        </Link>
+      </div>
 
-      <HeaderBar allLinksToHome={false} />
+      {/* Mobile Menu Button */}
+      <button
+        className="ml-auto md:hidden text-white focus:outline-none"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        {menuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+      </button>
 
-      <main className="pt-20 pb-12 min-h-screen bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Resume</h1>
-          
-          {/* Download button - always visible */}
-          <div className="mb-6 flex justify-center">
-            <a 
-              href="/Korbin_Resume.pdf" 
-              download
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md flex items-center gap-2 transition-colors"
+      {/* Navigation Links */}
+      <nav className="ml-auto hidden md:flex space-x-6 pr-4">
+        {navLinks.map((link) => (
+          <Link
+            key={link.label}
+            href={link.href}
+            className="text-gray-300 hover:text-white transition border-b-2 border-transparent hover:border-blue-400 py-1"
+          >
+            {link.label}
+          </Link>
+        ))}
+      </nav>
+
+      {/* Mobile Navigation Menu */}
+      {menuOpen && (
+        <div className="absolute top-full left-0 right-0 bg-gray-800 md:hidden shadow-lg">
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="block px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition text-center"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L10 12.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                <path fillRule="evenodd" d="M10 4a1 1 0 011 1v9a1 1 0 11-2 0V5a1 1 0 011-1z" clipRule="evenodd" />
-              </svg>
-              Download Resume (PDF)
-            </a>
-          </div>
-          
-          {/* PDF Viewer - only rendered on client side */}
-          {isMounted ? (
-            <div className="rounded-lg border border-gray-300 dark:border-gray-700 overflow-hidden h-[800px] bg-white">
-              {/* Using iframe for better compatibility */}
-              <iframe 
-                src="/Korbin_Resume.pdf" 
-                className="w-full h-full"
-                title="Korbin's Resume"
-              />
-            </div>
-          ) : (
-            <div className="flex justify-center items-center h-[800px] bg-gray-100 dark:bg-gray-800 rounded-lg border border-gray-300 dark:border-gray-700">
-              <div className="text-center p-8">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
-                <p className="text-gray-600 dark:text-gray-300">Loading resume...</p>
-              </div>
-            </div>
-          )}
+              {link.label}
+            </Link>
+          ))}
         </div>
-      </main>
-
-      <Footer />
-    </>
+      )}
+    </header>
   );
 }
