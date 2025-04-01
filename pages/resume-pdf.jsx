@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Head from "next/head";
-// Fix these imports to match your actual component paths:
-import Footer from "../components/footer"; // lowercase - keep as is
-import Header from "../components/header"; // lowercase - keep as is
+import Footer from "../components/footer";
+import Header from "../components/header";
 
 export default function ResumePDFViewer() {
   const [loading, setLoading] = useState(true);
@@ -12,27 +11,8 @@ export default function ResumePDFViewer() {
   const [loadProgress, setLoadProgress] = useState(0);
   const [iframeKey, setIframeKey] = useState(Date.now());
 
-  // Set title and handle loading state
   useEffect(() => {
     document.title = "Korbin's Resume";
-
-    // Check if the PDF file exists and is accessible
-    const checkPdfAccess = async () => {
-      try {
-        const response = await fetch('/Korbin_Resume.pdf', { method: 'HEAD' });
-        if (!response.ok) {
-          console.error('PDF file not accessible', response.status);
-          setError(true);
-          setLoading(false);
-        }
-      } catch (err) {
-        console.error('Error checking PDF access', err);
-        setError(true);
-        setLoading(false);
-      }
-    };
-    
-    checkPdfAccess();
 
     // Simulate progress to give user feedback while loading
     let progressInterval;
@@ -73,11 +53,6 @@ export default function ResumePDFViewer() {
     console.error("Error loading PDF");
     setLoading(false);
     setError(true);
-    
-    // Try to reload once after a short delay
-    setTimeout(() => {
-      setIframeKey(Date.now());
-    }, 1000);
   };
 
   return (
@@ -96,18 +71,18 @@ export default function ResumePDFViewer() {
         <div className="container mx-auto px-4">
           <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Resume</h1>
           
-          {/* Always show download button at the top */}
-          <div className="flex justify-center mb-6">
-            <a
+          {/* Download button - smaller and more subtle */}
+          <div className="mb-6 flex justify-end">
+            <a 
               href="/Korbin_Resume.pdf"
               download="Korbin_Hillan_Resume.pdf"
-              className="inline-flex items-center bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white px-6 py-3 rounded-md shadow-md transition-colors"
+              className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm shadow-sm transition-colors"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L10 12.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                 <path fillRule="evenodd" d="M10 4a1 1 0 011 1v9a1 1 0 11-2 0V5a1 1 0 011-1z" clipRule="evenodd" />
               </svg>
-              Download Resume (PDF)
+              Download PDF
             </a>
           </div>
 
@@ -147,7 +122,7 @@ export default function ResumePDFViewer() {
           <div className={loading || error ? "hidden" : "h-[600px] rounded-lg overflow-hidden border border-gray-300 dark:border-gray-700"}>
             <iframe
               key={iframeKey}
-              src="/Korbin_Resume.pdf#toolbar=1&view=FitH"
+              src="/Korbin_Resume.pdf"
               className="w-full h-full"
               title="Korbin's Resume"
               onLoad={handleContentLoad}
