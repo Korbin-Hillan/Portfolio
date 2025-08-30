@@ -1,6 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
-import { FaCalendarAlt, FaClock, FaArrowRight, FaCode, FaLightbulb, FaRocket } from "react-icons/fa";
+import {
+  FaCalendarAlt,
+  FaClock,
+  FaArrowRight,
+  FaCode,
+  FaLightbulb,
+  FaRocket,
+} from "react-icons/fa";
 import Link from "next/link";
 import { blogPosts as allPosts } from "../src/data/blog";
 
@@ -23,17 +30,17 @@ export default function Blog() {
       ),
   }));
 
-  const featuredPosts = blogPosts.filter(post => post.featured);
-  const recentPosts = blogPosts.filter(post => !post.featured);
+  const featuredPosts = blogPosts.filter((post) => post.featured);
+  const recentPosts = blogPosts.filter((post) => !post.featured);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -41,16 +48,16 @@ export default function Blog() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
   };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
@@ -64,9 +71,12 @@ export default function Blog() {
         viewport={{ once: true }}
         className="text-center mb-16"
       >
-        <h1 className="text-4xl font-bold text-blue-400 mb-4">Latest Articles</h1>
+        <h1 className="text-4xl font-bold text-blue-400 mb-4">
+          Latest Articles
+        </h1>
         <p className="text-gray-800 dark:text-gray-300 text-lg max-w-2xl mx-auto">
-          Sharing insights, tutorials, and thoughts on web development, software engineering, and modern technologies.
+          Sharing insights, tutorials, and thoughts on web development, software
+          engineering, and modern technologies.
         </p>
       </motion.div>
 
@@ -78,7 +88,9 @@ export default function Blog() {
         viewport={{ once: true }}
         className="mb-16"
       >
-        <h2 className="text-2xl font-bold text-white dark:text-white text-gray-900 mb-8 text-center">Featured Articles</h2>
+        <h2 className="text-2xl font-bold text-white dark:text-white text-gray-900 mb-8 text-center">
+          Featured Articles
+        </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {featuredPosts.map((post, index) => (
             <motion.article
@@ -129,7 +141,11 @@ export default function Blog() {
                   Read More
                   <motion.div
                     animate={{ x: [0, 5, 0] }}
-                    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 2,
+                      ease: "easeInOut",
+                    }}
                   >
                     <FaArrowRight size={14} />
                   </motion.div>
@@ -147,7 +163,9 @@ export default function Blog() {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <h2 className="text-2xl font-bold text-white dark:text-white text-gray-900 mb-8 text-center">Recent Posts</h2>
+        <h2 className="text-2xl font-bold text-white dark:text-white text-gray-900 mb-8 text-center">
+          Recent Posts
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {recentPosts.map((post, index) => (
             <motion.article
@@ -157,9 +175,7 @@ export default function Blog() {
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="text-2xl">
-                    {post.icon}
-                  </div>
+                  <div className="text-2xl">{post.icon}</div>
                   <div>
                     <span className="text-xs bg-gray-700 dark:bg-gray-700 bg-gray-200 text-gray-300 dark:text-gray-300 text-gray-600 px-2 py-1 rounded">
                       {post.category}
@@ -183,12 +199,6 @@ export default function Blog() {
                 <span className="text-xs text-gray-400 dark:text-gray-400 text-gray-500">
                   {formatDate(post.date)}
                 </span>
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
-                >
-                  Read →
-                </Link>
               </div>
             </motion.article>
           ))}
