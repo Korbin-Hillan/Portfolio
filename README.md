@@ -53,6 +53,15 @@ Content Management
   - PDF actions: View (modal), Download, Print.
   - Place file at `public/Korbin_Resume.pdf` to enable view/download.
 
+Contact Form (Email)
+- The contact form supports two modes:
+  1) Formspree (recommended, no server needed):
+     - Create a form at https://formspree.io, copy your Form ID (e.g., `xyzabcd`)
+     - Set env var `NEXT_PUBLIC_FORMSPREE_ID=xyzabcd` in `.env.local`
+     - The client will POST to `https://formspree.io/f/xyzabcd`.
+  2) Fallback mailto: If `NEXT_PUBLIC_FORMSPREE_ID` is not set, the form opens the default mail client with a prefilled email to `khillan@asu.edu`.
+- Code: `components/contact.jsx` (see `handleSubmit`).
+
 Styling/Framework
 - Next.js (React) with Tailwind CSS.
 - Icons via `react-icons`.

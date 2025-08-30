@@ -70,7 +70,7 @@ export default function ContactForm() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validate();
 
@@ -81,15 +81,45 @@ export default function ContactForm() {
 
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'mzzaeyny';
+    try {
+      if (formspreeId) {
+        const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+          }),
+        });
+        if (!res.ok) throw new Error("Form submission failed");
+        setIsSubmitted(true);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        // Fallback: open mail client with prefilled subject/body
+        const mailto = new URL(`mailto:khillan@asu.edu`);
+        const params = new URLSearchParams({
+          subject: formData.subject || `Message from ${formData.name}`,
+          body: `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`,
+        });
+        mailto.search = params.toString();
+        window.location.href = mailto.toString();
+        setIsSubmitted(true);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      }
+    } catch (err) {
+      setErrors({ submit: "Sorry, something went wrong. Please try again or email me directly." });
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
       setTimeout(() => {
         setIsSubmitted(false);
-        setFormData({ name: "", email: "", subject: "", message: "" });
       }, 4000);
-    }, 2000);
+    }
   };
 
   const contactMethods = [
@@ -514,6 +544,9 @@ export default function ContactForm() {
                           <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
                         )}
                       </button>
+                      {errors.submit && (
+                        <p className="text-red-400 text-sm mt-3 text-center">{errors.submit}</p>
+                      )}
                     </div>
 
                     {/* Privacy Notice */}
