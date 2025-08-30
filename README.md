@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Portfolio (Next.js + Tailwind CSS)
 
-## Getting Started
+Badges
+- ![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=nextdotjs&logoColor=white)
+- ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-0ea5e9?logo=tailwindcss&logoColor=white)
+- ![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-black?logo=vercel)
+- [![Live](https://img.shields.io/badge/Live-korbinhillan.com-blue)](https://korbinhillan.com)
 
-First, run the development server:
+Overview
+- Modern, responsive developer portfolio featuring projects, resume, and blog.
+- Built with Next.js and Tailwind CSS; uses both App Router (`src/app`) and Pages Router (`pages`).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Key Features
+- Projects: Structured grid with case studies, status/category pills, and polished actions (Case Study, Code, Live).
+- Resume: Professional layout with View PDF (modal), Download, and Print. Place your PDF at `public/Korbin_Resume.pdf`.
+- Blog: Data‑driven posts with search, category filters, index page, and per‑post detail routes.
+- Footer: Simplified, accessible footer with essential links and social icons.
+- Tech Stack section: Toned‑down cards, expanded Development Tools (CI/CD, testing, DevOps).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Live + Repos
+- Portfolio live: https://korbinhillan.com
+- Portfolio repo: https://github.com/Korbin-Hillan/Portfolio
+- Linktree live: https://korbinhillanlinktree.netlify.app/
+- Linktree repo: https://github.com/Korbin-Hillan/Linktree
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Getting Started
+- Install deps: `npm install`
+- Dev server: `npm run dev` (opens http://localhost:3000)
+- Build: `npm run build`
+- Start (prod): `npm start`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Project Structure
+- `src/app/` — App Router pages (home, projects, projects/[slug])
+- `pages/` — Pages Router (resume, blog, blog/[slug])
+- `components/` — UI components (header, footer, sections)
+- `src/data/` — Content data sources
+  - `projects.js` — Projects and case-study copy
+  - `blog.js` — Blog posts (title, excerpt, date, tags, content, slug)
+- `public/` — Static assets and resume PDF (`Korbin_Resume.pdf`)
 
-## Learn More
+Content Management
+- Projects
+  - Edit `src/data/projects.js` to add/update items.
+  - Fields: `title, slug, image, description, impact, status, date, client, category, technologies[], repo, live, pitch, problem, solution, outcomes[]`.
 
-To learn more about Next.js, take a look at the following resources:
+- Blog
+  - Edit `src/data/blog.js` to add posts.
+  - Fields: `title, excerpt, date, readTime, category, tags[], slug, content[]`.
+  - Index route: `/blog` (search + category filters). Post route: `/blog/[slug]`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Resume
+  - Page: `pages/resume.jsx`
+  - PDF actions: View (modal), Download, Print.
+  - Place file at `public/Korbin_Resume.pdf` to enable view/download.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Styling/Framework
+- Next.js (React) with Tailwind CSS.
+- Icons via `react-icons`.
 
-## Deploy on Vercel
+Customization Quick Links
+- Footer: `components/footer.jsx`
+- Projects layout: `src/app/projects/page.js`
+- Project case study: `src/app/projects/[slug]/page.js`
+- Blog section (home): `components/blog.jsx`
+- Blog index: `pages/blog.jsx`
+- Blog post: `pages/blog/[slug].jsx`
+- Resume: `pages/resume.jsx`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Deploy
+- Optimized for Vercel. Build with `npm run build` and deploy the output.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Notes
+- Some routes use Pages Router to keep things simple (resume, blog); others use App Router.
+- Add real screenshots to `public/images/` and update `image` fields in `src/data/projects.js` for best appearance.
+
+Screenshots
+- Portfolio
+
+  ![Portfolio Screenshot](./public/images/Portfolio.png)
+
+- Linktree
+
+  ![Linktree Screenshot](./public/images/LinkTree.png)
+
+Optional Demo GIF
+- Add a short demo GIF at `public/images/demo.gif`, then embed:
+
+  `![Demo](./public/images/demo.gif)`

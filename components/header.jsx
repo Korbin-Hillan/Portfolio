@@ -15,8 +15,6 @@ export default function Header({ allLinksToHome = false }) {
     ? [
         { label: "Home", href: "/#home" },
         { label: "About", href: "/#about" },
-        { label: "Skills", href: "/#skills" },
-        { label: "Contact", href: "/#contact" },
         { label: "Projects", href: "/projects" },
         { label: "Resume", href: "/resume" },
         { label: "Blog", href: "/blog" },
@@ -24,8 +22,6 @@ export default function Header({ allLinksToHome = false }) {
     : [
         { label: "Home", href: "#home" },
         { label: "About", href: "#about" },
-        { label: "Skills", href: "#skills" },
-        { label: "Contact", href: "#contact" },
         { label: "Projects", href: "/projects" },
         { label: "Resume", href: "/resume" },
         { label: "Blog", href: "/blog" },
@@ -62,7 +58,7 @@ export default function Header({ allLinksToHome = false }) {
       </button>
 
       {/* Navigation Links */}
-      <nav className="ml-auto hidden md:flex space-x-6 pr-4">
+      <nav className="ml-auto hidden md:flex space-x-6 pr-4 items-center">
         {navLinks.map((link) => (
           <Link
             key={link.label}
@@ -86,6 +82,7 @@ export default function Header({ allLinksToHome = false }) {
               {link.label}
             </Link>
           ))}
+          <div className="px-4 py-3 flex justify-center"></div>
         </div>
       )}
     </header>

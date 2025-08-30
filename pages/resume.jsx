@@ -1,10 +1,11 @@
 import HeaderBar from "../components/header";
-import { FiDownload, FiPhone } from "react-icons/fi";
+import { FiDownload, FiPhone, FiEye } from "react-icons/fi";
 import Footer from "../components/footer";
 import { FaMapLocationDot, FaGithub } from "react-icons/fa6";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { CiLinkedin } from "react-icons/ci";
 import Link from "next/link";
+import { useState } from "react";
 
 import "../src/app/globals.css";
 
@@ -77,6 +78,7 @@ const ExperienceItem = ({
   company,
   period,
   description,
+  bullets,
   technologies,
 }) => {
   return (
@@ -86,7 +88,14 @@ const ExperienceItem = ({
         <span className="text-gray-300 font-medium">{company}</span>
         <span className="text-gray-400 text-sm">{period}</span>
       </div>
-      <p className="text-gray-300 mb-2">{description}</p>
+      {description && <p className="text-gray-300 mb-2">{description}</p>}
+      {bullets && bullets.length > 0 && (
+        <ul className="list-disc list-inside text-gray-300 space-y-1 mb-2">
+          {bullets.map((b, i) => (
+            <li key={i}>{b}</li>
+          ))}
+        </ul>
+      )}
       {technologies && (
         <div className="flex flex-wrap gap-1">
           {technologies.map((tech, index) => (
@@ -122,7 +131,29 @@ const SkillItem = ({ category, skills }) => {
   );
 };
 
+const PdfViewerModal = ({ open, onClose, src }) => {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+      <div className="w-[95vw] h-[85vh] bg-gray-900 border border-gray-700 rounded-xl overflow-hidden shadow-2xl">
+        <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
+          <span className="text-gray-200 text-sm">Resume Preview</span>
+          <button
+            onClick={onClose}
+            className="text-gray-300 hover:text-white text-sm"
+          >
+            Close
+          </button>
+        </div>
+        <iframe title="Resume PDF" src={src} className="w-full h-full" />
+      </div>
+    </div>
+  );
+};
+
 export default function Resume() {
+  const [viewerOpen, setViewerOpen] = useState(false);
+  const pdfUrl = "/Korbin_Resume.pdf"; // Place your PDF in public/ as Korbin_Resume.pdf
   return (
     <div className="flex flex-col min-h-screen">
       <HeaderBar allLinksToHome={true} />
@@ -130,17 +161,28 @@ export default function Resume() {
         <h1 className="self-center text-blue-500 font-extrabold text-4xl mt-24">
           Resume
         </h1>
-        <div className="bg-blue-400 hover:bg-blue-500 transition-colors self-center mt-4 rounded-lg p-3 px-8 cursor-pointer">
-        <Link
-          href="/Korbin_Resume.pdf"
-          className="flex flex-row items-center gap-2 cursor-pointer"
-          aria-label="Download resume as PDF"
-          download="Korbin_Resume.pdf"
-        >
-          <FiDownload />
-          <span>View Resume</span>
-        </Link>
+        {/* Actions */}
+        <div className="flex flex-wrap items-center justify-center gap-3 mt-5">
+          <button
+            onClick={() => setViewerOpen(true)}
+            className="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-gray-100 px-4 py-2 rounded-lg border border-gray-700"
+          >
+            <FiEye /> View PDF
+          </button>
+          <a
+            href={pdfUrl}
+            download
+            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg"
+            aria-label="Download resume as PDF"
+          >
+            <FiDownload /> Download PDF
+          </a>
         </div>
+        <PdfViewerModal
+          open={viewerOpen}
+          onClose={() => setViewerOpen(false)}
+          src={pdfUrl}
+        />
         <ResumeContainer>
           <h1 className="text-blue-600 text-3xl md:text-4xl pt-6 pl-5 font-bold">
             Korbin Hillan
@@ -212,7 +254,7 @@ export default function Resume() {
               degree="Bachelor of Science in Software Engineering"
               institution="Arizona State University"
               period="Jan 2023 - May 2026 (Expected)"
-              gpa="3.2/4.0"
+              gpa="3.4/4.0"
               courses={[
                 "Data Structures & Algorithms",
                 "Agile Development & Git Collaboration",
@@ -235,31 +277,54 @@ export default function Resume() {
           </h2>
           <div className="px-5 py-4">
             <ExperienceItem
+              title="Swift Expense Tracker"
+              company="Personal Project"
+              period="2025"
+              bullets={[
+                "Built a native iOS app for fast expense input with categories and recurring items",
+                "Structured as a monorepo for shared modules and clean SwiftUI architecture",
+                "Prepared data layer for future cloud sync and analytics dashboards",
+              ]}
+              technologies={["Swift", "SwiftUI", "MongoDB"]}
+            />
+            <ExperienceItem
               title="Personal Portfolio Website"
               company="Personal Project"
               period="2025"
-              description="Designed and developed a responsive personal portfolio website to showcase my projects and skills. Implemented modern UI components, responsive layouts, and optimized performance through code splitting and lazy loading. Deployed with CI/CD pipeline for automated testing and deployment."
+              bullets={[
+                "Built a responsive Next.js + Tailwind UI with accessible components",
+                "Improved performance via code splitting and lazy loading",
+                "Automated CI/CD deploys with Vercel and preview environments",
+              ]}
               technologies={["React", "Next.js", "Tailwind CSS", "Vercel"]}
             />
             <ExperienceItem
-              title="Movie Horizon  "
+              title="Movie Horizon"
               company="Course Project"
               period="2025"
-              description="Developed a feature-rich movie browsing platform that allows users to discover, search, and create watchlists of their favorite films. Implemented user authentication, real-time updates using websockets, and integrated with TMDB API for comprehensive movie data. Designed a responsive UI with dark mode support and accessibility features."
+              bullets={[
+                "Implemented auth, watchlists, and real-time updates via WebSockets",
+                "Integrated TMDB API for search, details, and images",
+                "Delivered a responsive, accessible UI with dark mode",
+              ]}
               technologies={[
                 "React",
                 "Node.js",
-                "Tailwind,",
-                "Typescript",
-                "CI/CD Postgres",
+                "Tailwind",
+                "TypeScript",
+                "PostgreSQL",
               ]}
             />
             <ExperienceItem
-              title="Memoranda Project (Team Project)"
-              company="Personal Project"
+              title="Memoranda (Open Source)"
+              company="Team Project"
               period="2025"
-              description="Collaborated in an Agile Scrum environment with a team of 4 developers to enhance an open-source scheduling and note-taking application. Led the implementation of the calendar functionality and notification system. Conducted code reviews, wrote comprehensive unit tests achieving 85% code coverage, and participated in daily stand-ups and sprint planning."
-              technologies={["Java", "Swing", "Junit", "Gradle", "Git/Github"]}
+              bullets={[
+                "Led calendar and notifications features end-to-end",
+                "Wrote unit tests (≈85% coverage) and conducted code reviews",
+                "Collaborated in Agile ceremonies (stand-ups, planning, retros)",
+              ]}
+              technologies={["Java", "Swing", "JUnit", "Gradle", "Git/GitHub"]}
             />
           </div>
         </ResumeContainer>
@@ -298,7 +363,11 @@ export default function Resume() {
             />
             <SkillItem
               category="Tools & Methodologies"
-              skills={["Git", "GitHub", "VS Code", "Agile/Scrum"]}
+              skills={["Git", "Docker", "Postman", "Figma", "Agile/Scrum"]}
+            />
+            <SkillItem
+              category="Platforms & Cloud"
+              skills={["Vercel", "Netlify", "AWS"]}
             />
           </div>
         </ResumeContainer>
