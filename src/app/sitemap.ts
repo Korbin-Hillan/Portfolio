@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
+export const revalidate = 86400; // re-generate once per day during build/ISR
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
