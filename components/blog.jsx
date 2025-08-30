@@ -132,24 +132,6 @@ export default function Blog() {
                 <p className="text-gray-300 dark:text-gray-300 text-gray-600 mb-6 leading-relaxed">
                   {post.excerpt}
                 </p>
-
-                {/* Read More Link */}
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                >
-                  Read More
-                  <motion.div
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{
-                      repeat: Infinity,
-                      duration: 2,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <FaArrowRight size={14} />
-                  </motion.div>
-                </Link>
               </div>
             </motion.article>
           ))}
